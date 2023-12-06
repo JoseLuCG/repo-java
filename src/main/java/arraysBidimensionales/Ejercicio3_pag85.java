@@ -56,7 +56,7 @@ public class Ejercicio3_pag85 {
     }
 
     /**
-     * Request 20 numbers from the user.
+     * Fill the table with the random numbers.
      * @param matrix A table to fill.
      */
     public static void fillNumbers (int[][] matrix) {
