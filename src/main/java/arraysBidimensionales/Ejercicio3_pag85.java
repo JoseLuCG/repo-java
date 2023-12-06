@@ -58,12 +58,14 @@ public class Ejercicio3_pag85 {
     /**
      * Fill the table with the random numbers.
      * @param matrix A table to fill.
+     * @param minorRandom The minor value of random number.
+     * @param maxRandom The minor value of random number.
      */
-    public static void fillNumbers (int[][] matrix) {
+    public static void fillNumbers (int[][] matrix,int minorRandom, int maxRandom) {
         Random rnd = new Random();
         for (int f = 0; f < matrix.length; f++) {
             for (int c = 0; c < matrix[0].length; c++) {
-                matrix[f][c] = rnd.nextInt(100,1000);
+                matrix[f][c] = rnd.nextInt(minorRandom,maxRandom);
             }
         }
     }
@@ -85,6 +87,7 @@ public class Ejercicio3_pag85 {
         }
         return data;
     }
+
     /**
      * Sum the data of each column.
      * @param matrix A table to sum.
@@ -102,10 +105,11 @@ public class Ejercicio3_pag85 {
         }
         return data;
     }
+
     public static void main(String[] args) {
         int[][] table = new int[4][5];
         int[] sumRowsData, sumColData;
-        fillNumbers(table);
+        fillNumbers(table,100,1000);
         sumRowsData = sumRows(table);
         sumColData = sumColumns(table);
 
