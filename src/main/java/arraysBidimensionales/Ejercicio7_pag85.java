@@ -37,6 +37,11 @@ public class Ejercicio7_pag85 {
         return mineLocation;
     }
 
+    /**
+     * Asks the user for coordinates
+     * @param matrix Board of the game.
+     * @return The array with the coordinates of the user: pos[0] = row, pos[1] = col.
+     */
     public static int[] requestTheCoordinates (int[][] matrix) {
         Scanner sc = new Scanner(System.in);
         int[] coordinates = new int[2];
@@ -49,7 +54,14 @@ public class Ejercicio7_pag85 {
         }while ( (coordinates[0] > (matrix.length-1)) && (coordinates[1] > (matrix[0].length-1)) );
         return coordinates;
     }
-    public static void trackTheMine(int[][] matrix,int rowUser, int colUser,int[] mineData){
+
+    /**
+     * Check if there is a mine rearby a range of one position.
+     * @param rowUser Coordinate of the row given for de user.
+     * @param colUser Coordinate of the column given for de user.
+     * @param mineData The array with the coordinates of the mine: pos[0] = row, pos[1] = col.
+     */
+    public static void trackTheMine(int rowUser, int colUser,int[] mineData){
         int mineRowPosition = mineData[0];
         int mineColPosition = mineData[1];
         int absRowPos = Math.abs(mineRowPosition-rowUser);
@@ -74,7 +86,7 @@ public class Ejercicio7_pag85 {
 
         if (matrix[rowPosition][colPosition] == 0) {
             System.out.println("No has encontrado nada.");
-            trackTheMine(matrix,rowPosition,colPosition, dataMine);
+            trackTheMine(rowPosition,colPosition, dataMine);
             gameContinue = true;
         } else if (matrix[rowPosition][colPosition] == 1) {
             System.out.println("Has perdido. Te ha explotado la mina");
