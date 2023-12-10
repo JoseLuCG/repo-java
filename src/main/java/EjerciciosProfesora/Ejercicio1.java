@@ -27,7 +27,7 @@ public class Ejercicio1 {
      * @param matrix Matrix to show.
      */
     public static void showMatrix (int[][] matrix) {
-        System.out.printf("A%1s","");
+        System.out.printf("M%1s","");
         for (int c = 0; c < matrix[0].length; c++) {
             System.out.printf(PURPLE+"%4s", "C"+c);
         }
