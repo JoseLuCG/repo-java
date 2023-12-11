@@ -29,10 +29,11 @@ public class Ejercicio4 {
      * Check in the table if it have a saddle stitch.
      * @param matrix Table to check.
      */
-    public static void checkSaddleStitch (int[][] matrix) {
+    public static boolean checkSaddleStitch (int[][] matrix) {
         int column = 0;
         int maxValue;
         int minValue;
+        boolean continueFunction = true;
 
         for (int row = 0; row < matrix.length; row++) {
             minValue = Integer.MAX_VALUE;
@@ -50,8 +51,10 @@ public class Ejercicio4 {
             }
             if (minValue == maxValue) {
                 System.out.println("Hay un punto de silla en la fila: "+row+" columna: "+column+" del numero: "+matrix[row][column]);
+                continueFunction = false;
             }
         }
+        return continueFunction;
     }
     public static void main(String[] args) {
         int[][] saddleStitch = new int[8][10];
