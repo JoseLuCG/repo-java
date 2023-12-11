@@ -38,6 +38,11 @@ public class Ejercicio6 {
         matrix = new int[dimension][dimension];
         return matrix;
     }
+
+    /**
+     * Fill the matrix in order by magic square.
+     * @param matrix Table to fill.
+     */
     public static void fillMagicSquare (int[][] matrix) {
         int column = matrix[0].length / 2;
         int dimension = matrix.length;
