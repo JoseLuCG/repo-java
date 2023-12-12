@@ -13,10 +13,12 @@ public class Ejercicio1 {
         Scanner sc = new Scanner(System.in);
         int numeroInicio;
         int numeroFinal;
-        System.out.println("Selecciona el numero donde empezara el intervalo:");
-        numeroInicio = sc.nextInt();
-        System.out.println("Selecciona el numero donde termina el intervalo:");
-        numeroFinal = sc.nextInt();
+        do {
+            System.out.println("Selecciona el numero donde empezara el intervalo:");
+            numeroInicio = sc.nextInt();
+            System.out.println("Selecciona el numero donde termina el intervalo:");
+            numeroFinal = sc.nextInt();
+        } while (numeroInicio > numeroFinal);
 
         System.out.println("Los numeros primos son:");
         for (int numero = numeroInicio; numero < numeroFinal; numero++) {
