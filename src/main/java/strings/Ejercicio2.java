@@ -1,2 +1,4 @@
-package strings;public class Ejercicio2 {
+package strings;
+
+public class Ejercicio2 {
 }
