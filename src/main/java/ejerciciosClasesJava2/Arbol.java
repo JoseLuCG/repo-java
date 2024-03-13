@@ -64,6 +64,8 @@ public class Arbol {
 
     public Coordenada getLocalizacion() { return localizacion; }
 
+    public String getDate() { return date; }
+
     public String toString() {
         return "Nombre: " + String.format("%5s",commonName) +
                 "\nNombre Latino: " + String.format("%5s", latinName) +
