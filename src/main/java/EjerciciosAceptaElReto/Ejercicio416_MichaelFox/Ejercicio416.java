@@ -17,10 +17,11 @@ public class Ejercicio416 {
             outPut.println("¿Cuantas personas son?");
             persons = sc.nextInt();
 
-            fillArrayList(persons, fechas);
-            outPut.println(fechas);
-            checkerDatesEquals(fechas);
-
+            if (persons != 0) {
+                fillArrayList(persons, fechas);
+                outPut.println(fechas);
+                checkerDatesEquals(fechas);
+            }
         }while (persons != 0);
 
     }
