@@ -15,10 +15,17 @@ public class Ciclovia extends Via{
 
     public Ciclovia (String code, TypeOwnership owner, double numKm, double numKmDeficients, int width, LocalDate openingDate, String color) {
         super(code,owner,numKm,numKmDeficients, width, openingDate);
+        if (colorValidator(color)) {
+            this.color = color;
+        }
 
     }
     public double costMaintenance() {
-        return 5.5;
+        double costOfMaintenance;
+
+        costOfMaintenance = this.numKm * 308.15;
+
+        return costOfMaintenance;
     }
 
     private boolean colorValidator (String color) {
@@ -39,4 +46,15 @@ public class Ciclovia extends Via{
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Ciclovia: " +
+                "\nColor: " + color +
+                "\nCódigo: " + code +
+                "\nPropietario: " + typeOwnership +
+                "\nKilómetros: " + numKm +
+                "\nKilómetros Deficientes: " + numKmDeficients +
+                "\nAnchura en m: " + widthInMeters +
+                "\nFecha de apertura: " + openingDate ;
+    }
 }
