@@ -7,6 +7,7 @@ public class Main {
         int option;
         // src/main/resources/
         // MENU:
+
         do {
             outPut.println("Indique que operación desea realizar:");
             outPut.println("[1] - Crear nuevo fichero.");
@@ -15,15 +16,16 @@ public class Main {
             outPut.println("[4] - Borrar fichero.");
             outPut.println("[5] - Salir.");
             option = sc.nextInt();
+            sc.nextLine();
             switch (option){
                 case 1:
                     creteFile(); break;
                 case 2:
-                    System.out.println("2"); break;
+                    addClient(clientList); break;
                 case 3:
-                    System.out.println("3"); break;
+                    listClients(clientList); break;
                 case 4:
-                    System.out.println("4"); break;
+                    deleteFile(); break;
                 case 5:
                     System.out.println("5"); break;
                 default: outPut.println("Selecciona una opción válida.");
