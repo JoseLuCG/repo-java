@@ -1,6 +1,6 @@
 package EjercicioBaseDatos;
 
-import static BaseDatosPrueba.Functions.*;
+import static EjercicioBaseDatos.Functions.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,14 +15,15 @@ public class Main {
             outPut.println("[5] - Eliminar un empleado.");
             outPut.println("[6] - Salir.");
             option = sc.nextInt();
+            sc.nextLine();
 
             switch (option) {
-                case 1: System.out.println("1"); break;
-                case 2: System.out.println("2"); break;
-                case 3: System.out.println("3"); break;
-                case 4: System.out.println("4"); break;
+                case 1: connection(); break;
+                case 2: getDepartments(); break;
+                case 3: setDepartment(); break;
+                case 4: getEmployees(); break;
                 case 5: System.out.println("5"); break;
-                case 6: System.out.println("6"); break;
+                case 6: outPut.println("Cerrando sesión..."); break;
                 default:
                     outPut.println("Se ha producido un error. Intentelo de nuevo o eliga una opción válida.");
             }

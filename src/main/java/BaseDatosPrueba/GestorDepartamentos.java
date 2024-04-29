@@ -91,8 +91,8 @@ public class GestorDepartamentos {
     }
 
     public static void main(String[] args) {
-        //altaDepartamento();
+        altaDepartamento("Pera", "malpica", 15);
         consulta();
-        update();
+        //update();
     }
 }
