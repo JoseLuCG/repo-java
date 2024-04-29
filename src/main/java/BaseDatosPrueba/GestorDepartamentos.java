@@ -1,4 +1,4 @@
-package BaseDatos;
+package BaseDatosPrueba;
 
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
@@ -76,7 +76,7 @@ public class GestorDepartamentos {
         if (conexion()) {
             try{
                 modificarDepartamento = connection.createStatement();
-                String insertString = "UPDATE departamento SET nome = 'Patata' where codigo = 1";
+                String insertString = "UPDATE departamento SET nome = 'Central' where codigo = 1";
                 inserciones = modificarDepartamento.executeUpdate(insertString, Statement.RETURN_GENERATED_KEYS);
                 connection.close();
             } catch (SQLException e) {
