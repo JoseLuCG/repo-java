@@ -27,14 +27,17 @@ public class GestorDepartamentos {
         }
     }
 
-    public static void altaDepartamento() {
-        Statement insertarDepartamento = null;
+    public static void altaDepartamento(String a, String b, int c) {
+        PreparedStatement insertarDepartamento = null;
         int inserciones;
 
         if (conexion()) {
             try{
-                insertarDepartamento = connection.createStatement();
-                String insertString = "insert into departamento (nome,cidade,id_provincia) values ('prueba4','Lugo',27),('prueba5','Lugo',27)";
+                String insertString = "insert into departamento (nome,cidade,id_provincia) values (?,?,?)";
+                insertarDepartamento = connection.prepareStatement(insertString);
+                insertarDepartamento.setString(1, a);
+                insertarDepartamento.setString(2,b);
+                insertarDepartamento.setInt(3, c);
                 inserciones = insertarDepartamento.executeUpdate(insertString, Statement.RETURN_GENERATED_KEYS);
                 connection.close();
             } catch (SQLException e) {
