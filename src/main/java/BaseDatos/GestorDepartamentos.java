@@ -1,8 +1,11 @@
 package BaseDatos;
 
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.sql.*;
 
 public class GestorDepartamentos {
+    public static PrintStream outPut = new PrintStream(System.out, true, StandardCharsets.UTF_8);
     static Connection connection = null;
 
     public static boolean conexion() {
@@ -42,7 +45,51 @@ public class GestorDepartamentos {
         }
     }
 
+    public static void consulta () {
+        Statement mySqlSelect = null;
+        ResultSet mySqlResult = null;
+
+        try {
+            if (conexion()) {
+                mySqlSelect = connection.createStatement();
+                mySqlResult = mySqlSelect.executeQuery("SELECT * FROM departamento ORDER BY cidade ASC");
+
+                while (mySqlResult.next()) {
+                    outPut.printf("%10d ",mySqlResult.getInt(1));
+                    outPut.printf("%10s ",mySqlResult.getString("nome"));
+                    outPut.printf("%10s ",mySqlResult.getString("cidade"));
+                    outPut.printf("%10d ",mySqlResult.getInt("id_provincia"));
+                    outPut.println();
+                }
+            }
+            mySqlResult.close();
+            connection.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public static void update() {
+        Statement modificarDepartamento = null;
+        int inserciones;
+
+        if (conexion()) {
+            try{
+                modificarDepartamento = connection.createStatement();
+                String insertString = "UPDATE departamento SET nome = 'Patata' where codigo = 1";
+                inserciones = modificarDepartamento.executeUpdate(insertString, Statement.RETURN_GENERATED_KEYS);
+                connection.close();
+            } catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        } else {
+            System.out.println("La conexion ha fallado.");
+        }
+    }
+
     public static void main(String[] args) {
-        altaDepartamento();
+        //altaDepartamento();
+        consulta();
+        update();
     }
 }
