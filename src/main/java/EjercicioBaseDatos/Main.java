@@ -22,7 +22,7 @@ public class Main {
                 case 2: getDepartments(); break;
                 case 3: setDepartment(); break;
                 case 4: getEmployees(); break;
-                case 5: System.out.println("5"); break;
+                case 5: deleteEmployee(); break;
                 case 6: outPut.println("Cerrando sesión..."); break;
                 default:
                     outPut.println("Se ha producido un error. Intentelo de nuevo o eliga una opción válida.");

@@ -124,6 +124,23 @@ public class Functions {
     }
 
     public static void deleteEmployee() {
+        PreparedStatement deleteEmployee = null;
+        int dni;
+
+        outPut.println("Inserta el dni del empleado a borrar.");
+        dni = sc.nextInt();
+
+        if (connection()) {
+            try {
+                String sqlQuery = "DELETE FROM empregado WHERE DNI = ?";
+                deleteEmployee = connection.prepareStatement(sqlQuery);
+                deleteEmployee.setInt(1,dni);
+                deleteEmployee.executeUpdate();
+                connection.close();
+            } catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        } else outPut.println("La conexión ha fallado.");
 
     }
 }
