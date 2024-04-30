@@ -1,8 +1,11 @@
 package EjercicioBaseDatos;
 
+import EjercicioBaseDatos.Models.Department;
+
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.sql.*;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Functions {
@@ -33,114 +36,42 @@ public class Functions {
     }
 
     /**
-     * Get the departments from the database
+     * Creates a Department object for use it en the database connection.
+     * @param option Option 1 creates the object with the primary key code. Option 2 creates the object without the code.
+     * @return Returns a object Department.
      */
-    public static void getDepartments () {
-        Statement mySqlSelect = null;
-        ResultSet mySqlResult = null;
-        String sqlQuery = "SELECT * FROM departamento";
-
-        try {
-            if (connection()) {
-                mySqlSelect = connection.createStatement();
-                mySqlResult = mySqlSelect.executeQuery(sqlQuery);
-
-                while (mySqlResult.next()) {
-                    outPut.printf("%10d ",mySqlResult.getInt(1));
-                    outPut.printf("%10s ",mySqlResult.getString("nome"));
-                    outPut.printf("%10s ",mySqlResult.getString("cidade"));
-                    outPut.printf("%10d ",mySqlResult.getInt("id_provincia"));
-                    outPut.println();
-                }
-            }
-            mySqlResult.close();
-            connection.close();
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-        }
-    }
-
-    /**
-     * Add a new department in database.
-     */
-    public static void setDepartment () {
-        PreparedStatement insertDepartment = null;
+    public static Department createDepartment (int option) {
         String name;
         String city;
         int id_province;
+        Department department;
+        int code;
 
-        outPut.println("Inserte el nombre del nuevo departamento:");
-        name = sc.nextLine();
-        outPut.println("Ingrese el nombre de la ciudad donde está ubicado el departamento:");
-        city = sc.nextLine();
-        outPut.println("Inserte el id correspondiente a la provincia de su ciudad.");
-        id_province = sc.nextInt();
-        sc.nextLine();
+        if (option == 2) {
+            outPut.println("Inserte el nombre del nuevo departamento:");
+            name = sc.nextLine();
+            outPut.println("Ingrese el nombre de la ciudad donde está ubicado el departamento:");
+            city = sc.nextLine();
+            outPut.println("Inserte el id correspondiente a la provincia de su ciudad.");
+            id_province = sc.nextInt();
+            sc.nextLine();
+            department = new Department(name,city, id_province);
 
-        if (connection()) {
-            try {
-                String sqlQuery = "INSERT INTO departamento(nome,cidade,id_provincia) VALUES(?,?,?)";
-                insertDepartment = connection.prepareStatement(sqlQuery);
-                insertDepartment.setString(1,name);
-                insertDepartment.setString(2, city);
-                insertDepartment.setInt(3,id_province);
-                insertDepartment.executeUpdate();
-                connection.close();
-            } catch (SQLException e) {
-                System.err.println(e.getMessage());
-            }
-        } else outPut.println("La conexión ha fallado.");
-    }
+            return department;
+        } else {
+            outPut.println("Inserte el nuevo nombre departamento:");
+            name = sc.nextLine();
+            outPut.println("Ingrese la nueva ciudad donde está ubicado el departamento:");
+            city = sc.nextLine();
+            outPut.println("Inserte el id correspondiente a la nueva provincia de su ciudad.");
+            id_province = sc.nextInt();
+            sc.nextLine();
+            outPut.println("Indique el código del departamento a modificar:");
+            code = sc.nextInt();
+            sc.nextLine();
+            department = new Department(code, name,city, id_province);
 
-    public static void getEmployees() {
-        PreparedStatement mySqlSelect = null;
-        ResultSet mySqlResult = null;
-        int departmentName;
-
-        outPut.println("Seleccione el departamento del que desea ver sus empleados:");
-        departmentName = sc.nextInt();
-        try {
-            if (connection()) {
-                String sqlQuery = "SELECT * FROM empregado WHERE departamento = ? ";
-                mySqlSelect = connection.prepareStatement(sqlQuery);
-                mySqlSelect.setInt(1,departmentName);
-                mySqlResult = mySqlSelect.executeQuery();
-
-                while (mySqlResult.next()) {
-                    outPut.printf("%10d ",mySqlResult.getInt(1));
-                    outPut.printf("%20s ",mySqlResult.getString("apelidos"));
-                    outPut.printf("%15s ",mySqlResult.getString("nome"));
-                    outPut.printf("%5d ",mySqlResult.getInt("departamento"));
-                    outPut.printf("%10.2f ",mySqlResult.getBigDecimal("salario_bruto"));
-                    outPut.println();
-                }
-                outPut.println();
-            }
-            mySqlResult.close();
-            connection.close();
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            return department;
         }
-    }
-
-    public static void deleteEmployee() {
-        PreparedStatement deleteEmployee = null;
-        int dni;
-
-        outPut.println("Inserta el dni del empleado a borrar.");
-        dni = sc.nextInt();
-
-        if (connection()) {
-            try {
-                String sqlQuery = "DELETE FROM empregado WHERE DNI = ?";
-                deleteEmployee = connection.prepareStatement(sqlQuery);
-                deleteEmployee.setInt(1,dni);
-                deleteEmployee.executeUpdate();
-                connection.close();
-            } catch (SQLException e) {
-                System.err.println(e.getMessage());
-            }
-        } else outPut.println("La conexión ha fallado.");
-
     }
 }
