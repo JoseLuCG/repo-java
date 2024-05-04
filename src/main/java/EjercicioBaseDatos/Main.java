@@ -26,7 +26,7 @@ public class Main {
                     Department depUp = createDepartment(1);
                     updateDepartment(depUp);
                     break;
-                case 2: getDepartments(); break;
+                case 2: showData(); break;
                 case 3:
                     Department dep = createDepartment(2);
                     setDepartment(dep);

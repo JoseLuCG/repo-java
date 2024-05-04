@@ -7,12 +7,13 @@ import java.nio.charset.StandardCharsets;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Scanner;
+import static EjercicioBaseDatos.DAODepartment.*;
 
 public class Functions {
     public static PrintStream outPut = new PrintStream(System.out, true, StandardCharsets.UTF_8);
     public static Scanner sc = new Scanner(System.in);
     static Connection connection = null;
-
+    // ======================================================================
     /**
      * Connect to the database.
      * @return - True if I connect, false if not.
@@ -35,6 +36,7 @@ public class Functions {
         }
     }
 
+    // ======================================================================
     /**
      * Creates a Department object for use it en the database connection.
      * @param option Option 1 creates the object with the primary key code. Option 2 creates the object without the code.
@@ -74,4 +76,13 @@ public class Functions {
             return department;
         }
     }
+    // ======================================================================
+    public static void showData () {
+        HashMap<Integer,Department> collection = getDepartments();
+
+        for (Department dep: collection) {
+
+        }
+    }
+
 }

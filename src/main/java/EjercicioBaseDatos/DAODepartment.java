@@ -12,7 +12,8 @@ import static EjercicioBaseDatos.Functions.*;
 public class DAODepartment {
     // ======================================================================
     /**
-     * Get the departments from the database.
+     * Gets the departments from the database.
+     * @return Returns a HashMap of Department objects with the database information.
      */
     public static HashMap<Integer, Department> getDepartments () {
         HashMap<Integer, Department> departments = new HashMap<>();
