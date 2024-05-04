@@ -37,3 +37,22 @@ public class Main {
     }
 }
 ```
+
+## Uso del metodo **`Math.random()`**
+
+Con el metodo `Math.random()` no tenemos que importar nada, pero tenemos que recordar la forma en la que se usa este método. Para ello introducimos el una variable donde irá nuestro número aleatorio y lo parseamos a entero. Después multiplicamos el `Math.random()` por la siguiente secuencia: (`maxValue` - `minValue` + 1) + `minValue`.
+
+```Java
+public class Main {
+    public static void main(String[] args) {
+        int randomNumber; // Variable donde almacenaremos el número random
+        // Definimos el rango:
+        int max = 10;
+        int min = 1;
+        int range = max - min + 1;
+
+        // Generamos numeros aleatorios entre 1 y 10:
+        randomNumber = (int) (Math.random() * range) + min;
+    }
+}
+```
