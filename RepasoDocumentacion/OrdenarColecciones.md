@@ -98,7 +98,19 @@ Comparable sólo puedo establecer un método de ordenación, pues solo puedo esc
 2. En esta clase nueva creada, hay que implementar el método `compare(obj1, obj2)`.
 3. Esta clase nueva creada, que implementa `Comparator`, podemos usarla para ordenar de usando los constructores de las colecciones habituales.
 
-
-
-
 #### Aplicar `Comparator`
+
+1. **Crear clase propia que hereda de `Comparator`**: A diferencia de `Comparable`, no se va a tener que cambiar nada en la clase que vamos luego a comparar(Ej: Persona). Lo que vamos a hacer es una nueva clase, que implemente la interfaz `Comparator`, y como `Comparator` es genérica y debe darse el tipo, ponemos como la clase que queremos comparar:
+```Java
+class MiClaseParaOrdenarPorNombre implements Comparator<Persona> {...}
+```
+
+2. **Escribir en nuestra nueva clase el método `.compare()`**: `Comparator` nos obliga a implementar el método `.compare()`, que hace las funciones del `.compareTo()` que vimos en `Comparable` (y es muy parecido al mismo).
+
+El método recibe ésta vez como parámetros dos ojetos con los que queremos comparar (Persona).
+
+```Java
+public int compare ( Miclase p, Miclase q ) {…}
+```
+
+Ambos parámetros han de tener como tipo la clase propia que queremos comparar (Persona).
