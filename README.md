@@ -6,3 +6,4 @@ En los siguientes documentos se recoge la documentación del curso del lenguaje 
 * [Documentación String](./RepasoDocumentacion/Strings_documentation.md).
 
 * [Colecciones](./RepasoDocumentacion/Colecciones.md).
+* [Ordenar colecciones](./RepasoDocumentacion/OrdenarColecciones.md).
