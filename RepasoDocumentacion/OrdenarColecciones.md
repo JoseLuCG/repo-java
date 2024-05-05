@@ -38,3 +38,67 @@ Se necesita usar Comparable para poder hacer comparaciones con una clase propia 
 * Implementar el método *`.compareTo(Obj1)`* en la clase propia que deseamos que haga   comparaciones.
 * Finalmente, ordenarse directamente con los mismos mecanismos que si fuera un tipo de dato con ordenación natural.
 
+#### Aplicar `Comparable`
+
+1. **Implementar `Comparable`**: la clase que deseemos que pueda compararse debe comenzar por implementar `Comparable`, normalmente, indicando como tipo el de la propia clase:
+```Java
+class Persona implements Comparable<Persona> { // Comparable es una interfaz genérica, hay que poner la clase que se va a comparar.
+}    
+```
+
+2. **Escribir el método `.compareTo()`**: El método recibe como parámetro un objeto con el que comparar , de forma que la comparación se realizará del objeto en si (this) con el objeto pasado como parámetro.
+```Java
+public int compareTo ( Miclase otroObjeto ) {
+    // ...
+}
+```
+
+El método debe devolver un valor entero que será según los casos:
+* Un número negativo si el objeto base(this) es menor que el parámetro.
+* Un cero si es igual que el parámetro.
+* Un número positivo si el objeto base es mayor que el parámetro.
+
+Por lo general, se usan uno o varios atributos de la clase para efectuar la comparación entre objetos (y por lo tanto la ordenación). Aquí podemos tener varios casos, según el tipo de dato a comparar:
+
+**a)** Que el atributo sea un objeto, como String o Date. Para obtener el valor de retorno, usamos el propio método compareTo del objeto. En la clase Persona, si se compara por el nombre que es String, se usa `compareTo` de los nombres para que nos den directamente el valor a devolver:
+```Java
+class Persona implements Comparable<Persona> {
+ String nombre;
+ public Persona (String n) {
+    this.nombre = n;
+ }
+ @Override // metodo compareTo con objetos
+ public int compareTo (Persona p) {
+return nombre.compareTo (p.nombre);
+ }
+}
+```
+
+**b)** Que el atributo sea un tipo primitivo numérico. Se puede hacer restando los valores a comparar (primero el propio y luego el del parámetro): También se puede hacer varios if que devuelven -1, 0 o 1 según lo que se desee.
+```Java
+class Persona implements Comparable<Persona> {
+ int edad;
+ public Persona (int s) {
+    this.edad = e;
+ }
+ @Override // metodo compareTo con primit.
+ public int compareTo (Persona p) {
+    return this.edad - p.edad;
+ }
+}
+```
+
+3. **Ordenar la colección normalmente, como si tuviera orden natural**: ahora podemos usar la ordenación de una colección de nuestra clase como si fuera de String o de Integer. Listas y arrays mediante los métodos `Collections.sort()` y `Arrays.sort()`, también pueden ordenarse las claves en un mapa ordenado TreeMap, o como elementos de un set ordenado TreeSet (sin necesidad de métodos).
+
+### `Comparator`
+
+Comparable sólo puedo establecer un método de ordenación, pues solo puedo escribir un método `compareTo`, ya que este no es sobrecargable (p.e. la clase Persona del ejemplo anterior, si se ordena por nombre, luego no se puedo intentar ordenar por edad). `Comparator` sí permite varias ordenaciones, y su uso es muy parecido al de `Comparable`. Para usarlo seguiremos los siguientes pasos:
+
+1. Se ha de crear una clase nueva, propia, que debe implementar `Comparator`, indicando el tipo de dato que se va a comparar.
+2. En esta clase nueva creada, hay que implementar el método `compare(obj1, obj2)`.
+3. Esta clase nueva creada, que implementa `Comparator`, podemos usarla para ordenar de usando los constructores de las colecciones habituales.
+
+
+
+
+#### Aplicar `Comparator`
