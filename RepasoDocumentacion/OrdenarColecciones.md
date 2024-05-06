@@ -113,4 +113,80 @@ El método recibe ésta vez como parámetros dos ojetos con los que queremos com
 public int compare ( Miclase p, Miclase q ) {…}
 ```
 
-Ambos parámetros han de tener como tipo la clase propia que queremos comparar (Persona).
+* Ambos parámetros han de tener como tipo la clase propia que queremos comparar (Persona).
+
+* El método debe devolver un valor entero con la misma casuística que se usa en Comparable:
+   * Un número negativo si el parámetro1 es menor que el parámetro2.
+   * Un cero si son iguales ambos parámetros.
+   * Un número positivo si el parámetro1 es mayor que el parámetro2.
+* Por lo general, también como en `Comparable` se usan uno o varios atributos de la clase para efectuar la comparación, y nuevamente habrá dos casos, según el tipo de dato que usemos para ordenar.
+
+**a)** Que el atributo sea un objeto, como `String` o `Date`. Para obtener el valor de retorno, usamos el propio método `compareTo` del objeto.
+```Java
+class ModeloComparador implements Comparator<Persona> {
+   @Override
+   public int compare (Persona p1, Persona p2) {
+      return (p1.nombre.compareTo (p2.nombre));
+   }
+}
+```
+
+**b)** Que el atributo sea un tipo primitivo numérico. Se puede hacer restando los valores a comparar (de ambos parámetros):
+```Java
+class ModeloComparador2 implements Comparator<Persona> {
+   @Override
+   public int compare (Persona p1, Persona p2) {
+      return (p1.edad - p2.edad);
+   }
+} 
+```
+
+3. **Implementar `Comparator`**: Esta clase nueva creada, que implementa Comparator, podemos usarla para ordenar de usando los constructores de las colecciones habituales:
+   * Listas y arrays mediante los métodos `Collections.sort()` y `Arrays.sort()`, añadiendo un segundo parámetro, ademas de la colección a ordenar, un objeto de la clase `Comparator`.
+   * También pueden ordenarse las claves en un mapa ordenado TreeMap.
+   * Como elementos en un set ordenado TreeSet, para lo cual debemos crear un un objeto de la clase-comparator que se le pasa como parámetro al constructor de la colección, a la hora de crearla.
+
+Comparator con ArrayList y Collections.sort() pero añadiendo la clase-comparator en el `sort()`.
+```Java
+public static void main (String[] args) {
+   List<Persona> p = new ArrayList<Persona> ();
+   p.add (new Persona ("Luis", 23));
+   p.add (new Persona ("Pablo", 22));
+   p.add (new Persona ("Alberto", 18));
+   p.add (new Persona ("Cesar", 34));
+   ModeloComparador modcom = new ModeloComparador ();
+   Collections.sort (p, modcom);
+   for (Persona serhumano : p) {
+      System.out.println (serhumano.nombre);
+   }
+}
+```
+```shell
+Alberto
+Cesar
+Luis
+Pablo
+```
+
+Comparator con TreeMap y sin más metodos, pero añadiendo la clasecomparator en el constructor de la colección Advertir que lo que queda ordenado son las claves, pues no pueden quedar ordenados los valores, y que las claves NO se autoordenan por que son una Set en si mismas, pero NO de un tipo de orden natural.
+```Java
+public static void main (String[] args) {
+   // Map<Persona, String> pp = new TreeMap<> (); // ESTO DA ERROR
+   // pues intenta autoordenar la clave, que no es de orden natural
+   ModeloComparador modcom2 = new ModeloComparador ();
+   Map<Persona, String> pp = new TreeMap<> (modcom2);
+   pp.put (new Persona ("Luis", 23), "Ruiz");
+   pp.put (new Persona ("Pablo", 22), "Martinez");
+   pp.put (new Persona ("Alberto", 18), "Lopez");
+   pp.put (new Persona ("Cesar", 34), "Perez");
+   for (Persona h : pp.keySet ()) {
+      System.out.println (h.edad);
+   }
+}
+```
+```shell
+18
+22
+23
+34
+```

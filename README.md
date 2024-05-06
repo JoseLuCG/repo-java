@@ -7,3 +7,4 @@ En los siguientes documentos se recoge la documentación del curso del lenguaje 
 
 * [Colecciones](./RepasoDocumentacion/Colecciones.md).
 * [Ordenar colecciones](./RepasoDocumentacion/OrdenarColecciones.md).
+* [Métodos `.equals()` y `.hashCode`](./RepasoDocumentacion/Metodos_equals_hashcode.md).
