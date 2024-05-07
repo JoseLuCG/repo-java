@@ -24,3 +24,33 @@ try (BufferedReader lector = new BufferedReader(new FileReader("archivo.txt"))) 
     e.printStackTrace();
 }
 ```
++ `FileReader`: Esta clase se utiliza para leer caracteres de un archivo. Toma el nombre del archivo o un objeto `File` como argumento en su constructor. Lee los datos del archivo como caracteres Unicode.
++ `BufferedReader`: Esta clase mejora la eficiencia de la lectura al almacenar en búfer los caracteres leídos del archivo. Proporciona el método `readLine()` que lee una línea
+completa de texto desde el archivo.
+
+
+## Escritura en Ficheros de texto
+
+Puedes usar la clase `FileWriter` para escribir en un archivo de texto. Al igual que con la lectura, puedes envolverlo en un `BufferedWriter` para mejorar la eficiencia. Aquí tienes un ejemplo:
+
+```Java
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class EscrituraArchivoTexto {
+    public static void main(String[] args) {
+        String nombreArchivo = "archivo_salida.txt";
+        
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(nombreArchivo))) {
+            bw.write("Hola, este es un ejemplo de escritura en archivo de texto.")
+            bw.newLine();
+            bw.write("¡Espero que te sea útil!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
++ `FileWriter`: Esta clase se utiliza para escribir caracteres en un archivo. Toma el nombre del archivo o un objeto `File` como argumento en su constructor. Escribe los datos en el archivo como caracteres Unicode.
++ `BufferedWriter`: Similar a `BufferedReader`, esta clase mejora la eficiencia de la escritura al almacenar en búfer los caracteres escritos en el archivo. Proporciona el método `write()` para escribir cadenas de texto en el archivo, así como el método `newLine()` para escribir un salto de línea.
