@@ -79,10 +79,12 @@ public class Functions {
     // ======================================================================
     public static void showData () {
         HashMap<Integer,Department> collection = getDepartments();
+        /*
+            for (Department dep: collection) {
 
-        for (Department dep: collection) {
+            }
+        */
 
-        }
     }
 
 }

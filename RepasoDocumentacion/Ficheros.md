@@ -52,5 +52,9 @@ public class EscrituraArchivoTexto {
     }
 }
 ```
-+ `FileWriter`: Esta clase se utiliza para escribir caracteres en un archivo. Toma el nombre del archivo o un objeto `File` como argumento en su constructor. Escribe los datos en el archivo como caracteres Unicode.
++ `FileWriter`: Esta clase se utiliza para escribir caracteres en un archivo. Toma el nombre del archivo o un objeto `File` como argumento en su constructor. Escribe los datos en el archivo como caracteres Unicode. `FileWriter` permite la sobreescritura de archivos mediante el segundo parámetro booleano. Estos son parametros: 
+```java
+new FileWriter(file,true); // true = append, false = overwrite
+```
+
 + `BufferedWriter`: Similar a `BufferedReader`, esta clase mejora la eficiencia de la escritura al almacenar en búfer los caracteres escritos en el archivo. Proporciona el método `write()` para escribir cadenas de texto en el archivo, así como el método `newLine()` para escribir un salto de línea.
